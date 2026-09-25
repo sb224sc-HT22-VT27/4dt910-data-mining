@@ -1,0 +1,138 @@
+{
+  "topic_0": {
+    "top_words": [
+      "http",
+      "com",
+      "www",
+      "info",
+      "html",
+      "php",
+      "want",
+      "cheap",
+      "rate",
+      "regards",
+      "site",
+      "best"
+    ],
+    "weight_share_pct": 12.76
+  },
+  "topic_1": {
+    "top_words": [
+      "statements",
+      "company",
+      "securities",
+      "report",
+      "information",
+      "forward",
+      "investment",
+      "stock",
+      "looking",
+      "news",
+      "price",
+      "act"
+    ],
+    "weight_share_pct": 13.35
+  },
+  "topic_2": {
+    "top_words": [
+      "adobe",
+      "windows",
+      "software",
+      "xp",
+      "professional",
+      "mx",
+      "pro",
+      "macromedia",
+      "photoshop",
+      "corel",
+      "office",
+      "microsoft"
+    ],
+    "weight_share_pct": 8.01
+  },
+  "topic_3": {
+    "top_words": [
+      "lottery",
+      "account",
+      "number",
+      "international",
+      "program",
+      "prize",
+      "numbers",
+      "money",
+      "claim",
+      "agent",
+      "winning",
+      "bank"
+    ],
+    "weight_share_pct": 10.52
+  },
+  "topic_4": {
+    "top_words": [
+      "save",
+      "andmanyother",
+      "nice",
+      "hello",
+      "day",
+      "total",
+      "customers",
+      "al",
+      "worldwide",
+      "welcome",
+      "shop",
+      "shops"
+    ],
+    "weight_share_pct": 9.32
+  },
+  "topic_5": {
+    "top_words": [
+      "website",
+      "business",
+      "stationery",
+      "logo",
+      "search",
+      "make",
+      "submit",
+      "offers",
+      "interested",
+      "competitors",
+      "life",
+      "click"
+    ],
+    "weight_share_pct": 13.62
+  },
+  "topic_6": {
+    "top_words": [
+      "cialis",
+      "viagra",
+      "soft",
+      "prescription",
+      "tabs",
+      "medications",
+      "pills",
+      "generic",
+      "stop",
+      "brand",
+      "hours",
+      "prices"
+    ],
+    "weight_share_pct": 17.16
+  },
+  "topic_7": {
+    "top_words": [
+      "computron",
+      "email",
+      "message",
+      "com",
+      "click",
+      "mail",
+      "free",
+      "remove",
+      "contact",
+      "reply",
+      "list",
+      "phone"
+    ],
+    "weight_share_pct": 15.27
+  }
+}

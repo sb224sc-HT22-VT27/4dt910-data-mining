@@ -1,0 +1,138 @@
+{
+  "topic_0": {
+    "top_words": [
+      "ect",
+      "hou",
+      "enron",
+      "cc",
+      "corp",
+      "lon",
+      "subject",
+      "pm",
+      "forwarded",
+      "na",
+      "robert",
+      "farmer"
+    ],
+    "weight_share_pct": 12.23
+  },
+  "topic_1": {
+    "top_words": [
+      "schedules",
+      "hourahead",
+      "detected",
+      "variances",
+      "ancillary",
+      "awarded",
+      "westdesk",
+      "txt",
+      "iso",
+      "hour",
+      "parsing",
+      "log"
+    ],
+    "weight_share_pct": 9.09
+  },
+  "topic_2": {
+    "top_words": [
+      "enron",
+      "louise",
+      "message",
+      "sent",
+      "original",
+      "subject",
+      "power",
+      "kitchen",
+      "com",
+      "new",
+      "pm",
+      "business"
+    ],
+    "weight_share_pct": 24.43
+  },
+  "topic_3": {
+    "top_words": [
+      "xls",
+      "attached",
+      "file",
+      "hplo",
+      "hplno",
+      "ami",
+      "chokshi",
+      "corp",
+      "forwarded",
+      "questions",
+      "steve",
+      "cc"
+    ],
+    "weight_share_pct": 6.72
+  },
+  "topic_4": {
+    "top_words": [
+      "university",
+      "language",
+      "linguistics",
+      "conference",
+      "papers",
+      "edu",
+      "languages",
+      "english",
+      "workshop",
+      "mail",
+      "information",
+      "http"
+    ],
+    "weight_share_pct": 13.46
+  },
+  "topic_5": {
+    "top_words": [
+      "deal",
+      "meter",
+      "mmbtu",
+      "gas",
+      "daren",
+      "thanks",
+      "volume",
+      "flow",
+      "know",
+      "let",
+      "volumes",
+      "sitara"
+    ],
+    "weight_share_pct": 12.15
+  },
+  "topic_6": {
+    "top_words": [
+      "hpl",
+      "enron",
+      "teco",
+      "tap",
+      "ls",
+      "iferc",
+      "daily",
+      "gas",
+      "com",
+      "ami",
+      "chokshi",
+      "et"
+    ],
+    "weight_share_pct": 7.92
+  },
+  "topic_7": {
+    "top_words": [
+      "vince",
+      "kaminski",
+      "com",
+      "shirley",
+      "enron",
+      "cc",
+      "crenshaw",
+      "pm",
+      "thanks",
+      "subject",
+      "research",
+      "resume"
+    ],
+    "weight_share_pct": 13.99
+  }
+}

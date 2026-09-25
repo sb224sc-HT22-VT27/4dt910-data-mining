@@ -1,0 +1,46 @@
+[
+  {
+    "step": "load_enron",
+    "n_records": 29767,
+    "n_missing_subject": 198,
+    "n_missing_body": 0,
+    "n_missing_label": 0,
+    "raw_columns": [
+      "subject",
+      "body",
+      "label"
+    ]
+  },
+  {
+    "step": "load_lingspam",
+    "n_records": 2859,
+    "n_missing_subject": 62,
+    "n_missing_body": 0,
+    "n_missing_label": 0,
+    "raw_columns": [
+      "subject",
+      "body",
+      "label"
+    ]
+  },
+  {
+    "step": "combine_and_clean",
+    "n_before_concat": 32626,
+    "n_dropped_unlabeled": 0,
+    "n_before_dedup": 32626,
+    "n_after_dedup": 32283,
+    "n_duplicates_removed": 343,
+    "dedup_rate_pct": 1.05
+  },
+  {
+    "step": "final_dataset",
+    "n_records": 32283,
+    "n_malicious": 14408,
+    "n_safe": 17875,
+    "malicious_share_pct": 44.63,
+    "by_source": {
+      "enron": 29424,
+      "lingspam": 2859
+    }
+  }
+]
