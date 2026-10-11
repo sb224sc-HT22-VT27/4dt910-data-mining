@@ -66,7 +66,7 @@ def plot_structural_feature_comparisons(df: pd.DataFrame, top_n: int = 6, stats_
 
         clip = np.nanpercentile(np.concatenate(data), 99)
         data_clipped = [np.clip(d, None, clip) for d in data]
-        ax.boxplot(data_clipped, labels=["Safe", "Malicious"], showfliers=False)
+        ax.boxplot(data_clipped, label=["Safe", "Malicious"], showfliers=False)
         ax.set_title(feat)
     for ax in axes[len(feats):]:
         ax.axis("off")
