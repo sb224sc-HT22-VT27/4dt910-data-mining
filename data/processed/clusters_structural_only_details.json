@@ -1,0 +1,207 @@
+{
+  "cluster_0": {
+    "n": 27105,
+    "label_share": {
+      "0": 52.25,
+      "1": 47.75
+    },
+    "source_share": {
+      "enron": 91.23,
+      "lingspam": 8.77
+    },
+    "top_distinctive_terms": [
+      "andmanyother",
+      "stationery",
+      "kin",
+      "wysak",
+      "eogi",
+      "geec",
+      "wysk",
+      "nomad",
+      "internationa",
+      "wor",
+      "mnei",
+      "brec",
+      "nds",
+      "acy",
+      "natura"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 1363.6994281497878,
+      "body_word_count": 276.2032097399004,
+      "num_special_chars": 60.79726987640657,
+      "num_digits": 25.24467810367091,
+      "subject_length": 32.59811842833425
+    }
+  },
+  "cluster_1": {
+    "n": 47,
+    "label_share": {
+      "0": 97.87,
+      "1": 2.13
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "chevrontexaco",
+      "newswires",
+      "afx",
+      "buyout",
+      "downgraded",
+      "partnerships",
+      "takeover",
+      "citigroup",
+      "dynegy",
+      "spokeswoman",
+      "disclosures",
+      "plunged",
+      "downgrade",
+      "bn",
+      "rival"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 82049.17021276595,
+      "body_word_count": 16391.340425531915,
+      "num_special_chars": 2680.936170212766,
+      "num_digits": 1734.276595744681,
+      "subject_length": 22.06382978723404
+    }
+  },
+  "cluster_2": {
+    "n": 1,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "charity",
+      "difficulties",
+      "measures",
+      "economic",
+      "political",
+      "conducted",
+      "charset",
+      "mime",
+      "encoding",
+      "beneficiary",
+      "demokritos",
+      "iit",
+      "forum",
+      "fund",
+      "turned"
+    ],
+    "most_shifted_structural_features": {
+      "subject_length": 7169.0,
+      "subject_word_count": 1665.0,
+      "num_digits": 1159.0,
+      "body_length": 1570.0,
+      "num_special_chars": 117.0
+    }
+  },
+  "cluster_3": {
+    "n": 914,
+    "label_share": {
+      "0": 61.27,
+      "1": 38.73
+    },
+    "source_share": {
+      "enron": 56.67,
+      "lingspam": 43.33
+    },
+    "top_distinctive_terms": [
+      "capitalfm",
+      "dbcaps",
+      "gps",
+      "alias",
+      "afx",
+      "mseb",
+      "unknown",
+      "vinoble",
+      "maharashtra",
+      "shmuel",
+      "georgetown",
+      "quit",
+      "wifi",
+      "perform",
+      "partnerships"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 9712.234135667397,
+      "body_word_count": 2105.8118161925604,
+      "num_special_chars": 635.1159737417943,
+      "num_digits": 236.57549234135666,
+      "num_exclamations": 14.053610503282275
+    }
+  },
+  "cluster_4": {
+    "n": 2,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "telecom",
+      "engines",
+      "directory",
+      "australian",
+      "kong",
+      "search",
+      "pages",
+      "hong",
+      "web",
+      "essential",
+      "www",
+      "rapid",
+      "britain",
+      "argentina",
+      "cancer"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 12214.5,
+      "body_word_count": 2635.0,
+      "num_special_chars": 910.0,
+      "num_urls": 106.0,
+      "num_unique_domains": 105.0
+    }
+  },
+  "cluster_5": {
+    "n": 4214,
+    "label_share": {
+      "0": 73.71,
+      "1": 26.29
+    },
+    "source_share": {
+      "enron": 97.94,
+      "lingspam": 2.06
+    },
+    "top_distinctive_terms": [
+      "hplno",
+      "squirrelmail",
+      "iferc",
+      "hplo",
+      "tap",
+      "detected",
+      "variances",
+      "westdesk",
+      "teco",
+      "ancillary",
+      "xls",
+      "txt",
+      "schedules",
+      "parsing",
+      "awarded"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 611.610109159943,
+      "body_word_count": 154.0187470336972,
+      "num_digits": 65.58115804461319,
+      "num_special_chars": 59.47437114380636,
+      "subject_length": 40.31751305173232
+    }
+  }
+}

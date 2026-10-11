@@ -1,0 +1,206 @@
+{
+  "cluster_0": {
+    "n": 1053,
+    "label_share": {
+      "1": 99.53,
+      "0": 0.47
+    },
+    "source_share": {
+      "enron": 99.72,
+      "lingspam": 0.28
+    },
+    "top_distinctive_terms": [
+      "wysak",
+      "eogi",
+      "technoiogy",
+      "wysk",
+      "shouid",
+      "lauraan",
+      "resuits",
+      "couid",
+      "pubiisher",
+      "mnei",
+      "brec",
+      "specuiative",
+      "inciude",
+      "piaced",
+      "vinoble"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 4837.960113960114,
+      "body_word_count": 911.7758784425451,
+      "num_special_chars": 164.26400759734094,
+      "num_digits": 49.8281101614435,
+      "subject_length": 41.599240265906936
+    }
+  },
+  "cluster_1": {
+    "n": 12381,
+    "label_share": {
+      "0": 90.38,
+      "1": 9.62
+    },
+    "source_share": {
+      "enron": 99.75,
+      "lingspam": 0.25
+    },
+    "top_distinctive_terms": [
+      "dbcaps",
+      "cera",
+      "ljm",
+      "citigroup",
+      "newswires",
+      "downgraded",
+      "afx",
+      "enw",
+      "unwarranted",
+      "squirrelmail",
+      "mseb",
+      "mirant",
+      "mkt",
+      "epmi",
+      "dowjones"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 1748.1866569743963,
+      "body_word_count": 361.98085776593166,
+      "num_digits": 48.07487278895081,
+      "subject_length": 31.182214683789677,
+      "num_special_chars": 78.06130361037073
+    }
+  },
+  "cluster_2": {
+    "n": 16614,
+    "label_share": {
+      "1": 71.51,
+      "0": 28.49
+    },
+    "source_share": {
+      "enron": 83.0,
+      "lingspam": 17.0
+    },
+    "top_distinctive_terms": [
+      "cialis",
+      "pills",
+      "penis",
+      "hplo",
+      "andmanyother",
+      "hplno",
+      "utf",
+      "tablets",
+      "phonology",
+      "erections",
+      "lexical",
+      "verb",
+      "syntactic",
+      "semantic",
+      "benjamins"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 1279.2415432767546,
+      "body_word_count": 263.57740459853136,
+      "num_special_chars": 68.6373540387625,
+      "num_digits": 27.67924641868304,
+      "subject_length": 35.64475743348983
+    }
+  },
+  "cluster_3": {
+    "n": 124,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "invested",
+      "engines",
+      "visitors",
+      "dramatically",
+      "submitting",
+      "stream",
+      "submit",
+      "revenues",
+      "search",
+      "spent",
+      "virtually",
+      "website",
+      "boost",
+      "places",
+      "oniy"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 821.8467741935484,
+      "body_word_count": 197.7983870967742,
+      "num_digits": 1.685483870967742,
+      "subject_length": 54.346774193548384,
+      "num_special_chars": 91.15322580645162
+    }
+  },
+  "cluster_4": {
+    "n": 1947,
+    "label_share": {
+      "0": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "ect",
+      "hou",
+      "lon",
+      "clynes",
+      "cotten",
+      "weissman",
+      "lannou",
+      "graves",
+      "herod",
+      "pdx",
+      "hanks",
+      "gco",
+      "vance",
+      "lloyd",
+      "camp"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 1943.1900359527478,
+      "body_word_count": 462.633281972265,
+      "num_special_chars": 151.46019517205957,
+      "num_digits": 68.44478685156652,
+      "subject_length": 30.32819722650231
+    }
+  },
+  "cluster_5": {
+    "n": 164,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "jebel",
+      "aopen",
+      "viewsonic",
+      "targus",
+      "intellinet",
+      "computron",
+      "iomega",
+      "apc",
+      "cisco",
+      "emirates",
+      "resellers",
+      "toshiba",
+      "intel",
+      "customerservice",
+      "complaints"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 2575.609756097561,
+      "body_word_count": 549.4451219512196,
+      "num_digits": 113.38414634146342,
+      "num_special_chars": 127.97560975609755,
+      "subject_length": 43.1280487804878
+    }
+  }
+}

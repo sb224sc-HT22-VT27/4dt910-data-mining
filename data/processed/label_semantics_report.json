@@ -1,0 +1,27 @@
+{
+  "top_malicious_terms_sample": [
+    "andmanyother",
+    "cialis",
+    "ciick",
+    "computron",
+    "demokritos",
+    "dysfunction",
+    "erectile",
+    "erections",
+    "gra",
+    "oniine",
+    "orgasms",
+    "paliourg",
+    "paypal",
+    "peopie",
+    "photoshop",
+    "pills",
+    "projecthoneypot",
+    "replicas",
+    "rolex",
+    "shiip"
+  ],
+  "spam_like_hits": [],
+  "phishing_like_hits": [],
+  "terminology_guidance": "Use 'malicious/spam-like' wording for this corpus rather than assuming all positives are phishing."
+}

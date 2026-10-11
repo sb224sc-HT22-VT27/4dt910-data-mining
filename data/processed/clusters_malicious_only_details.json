@@ -1,0 +1,170 @@
+{
+  "cluster_0": {
+    "n": 778,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 82.9,
+      "lingspam": 17.1
+    },
+    "top_distinctive_terms": [
+      "lauraan",
+      "pubiisher",
+      "mnei",
+      "vinoble",
+      "vnbl",
+      "itec",
+      "invoive",
+      "techlite",
+      "witer",
+      "fiiings",
+      "cwtd",
+      "eyewear",
+      "sysiync",
+      "syslync",
+      "resuiting"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 8423.296915167095,
+      "body_word_count": 1720.4640102827764,
+      "num_special_chars": 412.98071979434445,
+      "num_digits": 142.49485861182518,
+      "num_exclamations": 10.816195372750643
+    }
+  },
+  "cluster_1": {
+    "n": 409,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "adipren",
+      "freeware",
+      "shareware",
+      "complementary",
+      "gg",
+      "notes",
+      "contents",
+      "usage",
+      "definite",
+      "shlpp",
+      "burns",
+      "mobile",
+      "ars",
+      "confirmation",
+      "om"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 659.8044009779951,
+      "body_word_count": 147.12958435207824,
+      "num_special_chars": 41.74572127139364,
+      "num_digits": 47.32762836185819,
+      "num_exclamations": 1.0831295843520783
+    }
+  },
+  "cluster_2": {
+    "n": 1,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 100.0
+    },
+    "top_distinctive_terms": [
+      "measures",
+      "economic",
+      "bo",
+      "forum",
+      "political",
+      "industrial",
+      "conducted",
+      "charity",
+      "physical",
+      "feb",
+      "mime",
+      "sender",
+      "glad",
+      "conditions",
+      "charset"
+    ],
+    "most_shifted_structural_features": {
+      "subject_length": 7169.0,
+      "subject_word_count": 1665.0,
+      "num_digits": 1159.0,
+      "body_length": 1570.0,
+      "body_word_count": 345.0
+    }
+  },
+  "cluster_3": {
+    "n": 742,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 99.33,
+      "lingspam": 0.67
+    },
+    "top_distinctive_terms": [
+      "squirrelmail",
+      "dreamweaver",
+      "mailwisconsin",
+      "homesite",
+      "puede",
+      "informacin",
+      "usted",
+      "haga",
+      "invoked",
+      "helo",
+      "multilanguage",
+      "authenticated",
+      "jul",
+      "gzo",
+      "qmail"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 1270.3827493261456,
+      "num_digits": 86.85040431266846,
+      "num_special_chars": 80.38274932614556,
+      "body_word_count": 273.2385444743935,
+      "subject_length": 43.25606469002695
+    }
+  },
+  "cluster_4": {
+    "n": 12478,
+    "label_share": {
+      "1": 100.0
+    },
+    "source_share": {
+      "enron": 97.44,
+      "lingspam": 2.56
+    },
+    "top_distinctive_terms": [
+      "cialis",
+      "penis",
+      "andmanyother",
+      "utf",
+      "stationery",
+      "pill",
+      "shlpplng",
+      "ciick",
+      "vlagra",
+      "wysak",
+      "dysfunction",
+      "xanaax",
+      "cialls",
+      "ci",
+      "orgasms"
+    ],
+    "most_shifted_structural_features": {
+      "body_length": 977.6411283859593,
+      "body_word_count": 194.7917935566597,
+      "num_special_chars": 40.24154511941016,
+      "num_digits": 17.09448629588075,
+      "subject_length": 36.78490142651066
+    }
+  }
+}
