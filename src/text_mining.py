@@ -10,27 +10,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
-from sklearn.cluster import KMeans
-from sklearn.decomposition import NMF, TruncatedSVD
-from sklearn.ensemble import IsolationForest
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import NMF
 
+from clustering import (
+    STRUCTURAL_FEATURES,
+    build_tfidf,
+    run_clustering_analysis,
+    run_malicious_only_clustering,
+)
 from config import FIGURES_DIR, PROCESSED_DIR, RANDOM_STATE
+from outlier_detection import run_outlier_analysis
 
-STRUCTURAL_FEATURES = [
-    "subject_length", "subject_word_count",
-    "body_length", "body_word_count",
-    "num_urls", "num_unique_domains",
-    "num_digits", "num_special_chars", "num_exclamations",
-    "subject_upper_ratio", "body_upper_ratio",
-    "digit_density", "special_char_density",
-]
-
-def choose_n_clusters(n_samples: int, max_clusters: int = 6) -> int:
-    if n_samples < 4:
-        return 2
-    return max(2, min(max_clusters, int(np.sqrt(n_samples / 2)) + 1))
 
 def descriptive_stats_by_class(df: pd.DataFrame) -> pd.DataFrame:
     rows = []
@@ -102,35 +92,6 @@ def malicious_share_by_source(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def build_tfidf(
-    texts: pd.Series,
-    max_features: int = 5000,
-    min_df: int = 5,
-) -> tuple[TfidfVectorizer, np.ndarray]:
-    min_df_eff = 1 if len(texts) < 50 else min_df
-    vectorizer = TfidfVectorizer(
-        lowercase=True,
-        stop_words="english",
-        max_df=0.9,
-        min_df=min_df_eff,
-        max_features=max_features,
-        token_pattern=r"(?u)\b[a-zA-Z][a-zA-Z]+\b",
-    )
-    try:
-        X = vectorizer.fit_transform(texts)
-    except ValueError:
-        vectorizer = TfidfVectorizer(
-            lowercase=True,
-            stop_words=None,
-            max_df=1.0,
-            min_df=1,
-            max_features=max_features,
-            token_pattern=r"(?u)\b[a-zA-Z][a-zA-Z]+\b",
-        )
-        X = vectorizer.fit_transform(texts)
-    return vectorizer, X
-
-
 def descriptive_stats_within_each_source(df: pd.DataFrame) -> pd.DataFrame:
     parts = []
     for source_name, sub in df.groupby("source"):
@@ -158,199 +119,6 @@ def cross_source_effect_direction(within_source_stats: pd.DataFrame) -> pd.DataF
     )
     out["mean_abs_effect"] = out.abs().mean(axis=1)
     return out.sort_values("mean_abs_effect", ascending=False).reset_index()
-
-
-def get_top_distinctive_terms(
-    X_tfidf,
-    vocab: np.ndarray,
-    in_mask: np.ndarray,
-    top_n: int = 12,
-) -> list[str]:
-    out_mask = ~in_mask
-    if in_mask.sum() == 0 or out_mask.sum() == 0:
-        return []
-    in_mean = np.asarray(X_tfidf[in_mask].mean(axis=0)).ravel()
-    out_mean = np.asarray(X_tfidf[out_mask].mean(axis=0)).ravel()
-    ratio = np.log((in_mean + 1e-9) / (out_mean + 1e-9))
-    idx = np.argsort(-ratio)[:top_n]
-    return vocab[idx].tolist()
-
-
-def prepare_representations(
-    df: pd.DataFrame,
-    text_col: str = "body_clean",
-) -> tuple[dict[str, np.ndarray], np.ndarray, np.ndarray]:
-    vectorizer, X_text = build_tfidf(df[text_col], max_features=4000)
-    vocab = np.array(vectorizer.get_feature_names_out())
-
-    X_struct = StandardScaler().fit_transform(df[STRUCTURAL_FEATURES].values)
-
-    max_svd = min(50, X_text.shape[1] - 1, X_text.shape[0] - 1)
-    if max_svd >= 2:
-        n_svd = max_svd
-        X_text_reduced = TruncatedSVD(n_components=n_svd, random_state=RANDOM_STATE).fit_transform(X_text)
-    else:
-        X_text_reduced = X_text.toarray()
-    X_text_reduced = StandardScaler().fit_transform(X_text_reduced)
-
-    reps = {
-        "structural_only": X_struct,
-        "text_only": X_text_reduced,
-        "combined": np.hstack([X_struct, X_text_reduced]),
-    }
-    return reps, X_text, vocab
-
-
-def describe_clusters(
-    df: pd.DataFrame,
-    cluster_labels: np.ndarray,
-    X_tfidf,
-    vocab: np.ndarray,
-) -> tuple[pd.DataFrame, dict]:
-    out = df.copy()
-    out["cluster"] = cluster_labels
-    summary = (
-        out.groupby("cluster")
-        .agg(
-            n=("email_id", "count"),
-            malicious_pct=("label", lambda s: 100 * s.mean()),
-            safe_pct=("label", lambda s: 100 * (1 - s.mean())),
-            enron_pct=("source", lambda s: 100 * (s == "enron").mean()),
-            lingspam_pct=("source", lambda s: 100 * (s == "lingspam").mean()),
-        )
-        .reset_index()
-    )
-
-    global_means = out[STRUCTURAL_FEATURES].mean()
-    cluster_details = {}
-    for cid in sorted(out["cluster"].unique()):
-        mask = out["cluster"].values == cid
-        sub = out.loc[mask]
-        centered = (sub[STRUCTURAL_FEATURES].mean() - global_means).abs().sort_values(ascending=False)
-        top_structural = centered.head(5).index.tolist()
-        cluster_details[f"cluster_{cid}"] = {
-            "n": int(mask.sum()),
-            "label_share": out.loc[mask, "label"].value_counts(normalize=True).mul(100).round(2).to_dict(),
-            "source_share": out.loc[mask, "source"].value_counts(normalize=True).mul(100).round(2).to_dict(),
-            "top_distinctive_terms": get_top_distinctive_terms(X_tfidf, vocab, mask, top_n=15),
-            "most_shifted_structural_features": {
-                feat: float(sub[feat].mean()) for feat in top_structural
-            },
-        }
-    return summary, cluster_details
-
-
-def run_clustering_analysis(df: pd.DataFrame, save: bool = True) -> dict:
-    reps, X_tfidf, vocab = prepare_representations(df)
-    n_clusters = choose_n_clusters(len(df))
-
-    cluster_outputs = {}
-    for rep_name, X_rep in reps.items():
-        model = KMeans(n_clusters=n_clusters, random_state=RANDOM_STATE, n_init=20)
-        labels = model.fit_predict(X_rep)
-        summary, details = describe_clusters(df, labels, X_tfidf, vocab)
-        if save:
-            summary.to_csv(PROCESSED_DIR / f"clusters_{rep_name}_summary.csv", index=False)
-            with open(PROCESSED_DIR / f"clusters_{rep_name}_details.json", "w") as f:
-                json.dump(details, f, indent=2)
-        cluster_outputs[rep_name] = {
-            "summary": summary,
-            "details": details,
-        }
-    return cluster_outputs
-
-
-def run_malicious_only_clustering(df: pd.DataFrame, save: bool = True) -> dict:
-    mal_df = df[df["label"] == 1].copy()
-    if len(mal_df) < 10:
-        return {}
-    reps, X_tfidf, vocab = prepare_representations(mal_df)
-    n_clusters = choose_n_clusters(len(mal_df), max_clusters=5)
-    X_rep = reps["combined"]
-    labels = KMeans(n_clusters=n_clusters, random_state=RANDOM_STATE, n_init=20).fit_predict(X_rep)
-    summary, details = describe_clusters(mal_df, labels, X_tfidf, vocab)
-    if save:
-        summary.to_csv(PROCESSED_DIR / "clusters_malicious_only_summary.csv", index=False)
-        with open(PROCESSED_DIR / "clusters_malicious_only_details.json", "w") as f:
-            json.dump(details, f, indent=2)
-    return {"summary": summary, "details": details}
-
-
-def run_outlier_analysis(df: pd.DataFrame, save: bool = True) -> dict:
-    reps, X_tfidf, vocab = prepare_representations(df)
-    X = reps["combined"]
-    model = IsolationForest(
-        n_estimators=300,
-        contamination=0.05,
-        random_state=RANDOM_STATE,
-    )
-    flags = model.fit_predict(X)
-    scores = model.score_samples(X)
-    out = df.copy()
-    out["is_outlier"] = (flags == -1).astype(int)
-    out["outlier_score"] = scores
-
-    summary = (
-        out.groupby("is_outlier")
-        .agg(
-            n=("email_id", "count"),
-            malicious_pct=("label", lambda s: 100 * s.mean()),
-            safe_pct=("label", lambda s: 100 * (1 - s.mean())),
-            enron_pct=("source", lambda s: 100 * (s == "enron").mean()),
-            lingspam_pct=("source", lambda s: 100 * (s == "lingspam").mean()),
-        )
-        .reset_index()
-    )
-    if save:
-        summary.to_csv(PROCESSED_DIR / "outlier_summary.csv", index=False)
-
-    structural = (
-        out.groupby("is_outlier")[STRUCTURAL_FEATURES]
-        .mean()
-        .T
-        .rename(columns={0: "normal_mean", 1: "outlier_mean"})
-        .reset_index()
-        .rename(columns={"index": "feature"})
-    )
-    if "normal_mean" not in structural.columns:
-        structural["normal_mean"] = np.nan
-    if "outlier_mean" not in structural.columns:
-        structural["outlier_mean"] = np.nan
-    structural["abs_shift"] = (structural["outlier_mean"] - structural["normal_mean"]).abs()
-    structural = structural.sort_values("abs_shift", ascending=False)
-    if save:
-        structural.to_csv(PROCESSED_DIR / "outlier_structural_comparison.csv", index=False)
-
-    outlier_terms = get_top_distinctive_terms(X_tfidf, vocab, out["is_outlier"].values == 1, top_n=20)
-    outlier_details = {
-        "top_terms_outliers_vs_normal": outlier_terms,
-        "malicious_outlier_rate_pct": round(
-            100 * ((out["is_outlier"] == 1) & (out["label"] == 1)).sum() / max((out["label"] == 1).sum(), 1), 2
-        ),
-        "safe_outlier_rate_pct": round(
-            100 * ((out["is_outlier"] == 1) & (out["label"] == 0)).sum() / max((out["label"] == 0).sum(), 1), 2
-        ),
-    }
-
-    mal_mask = (out["is_outlier"] == 1) & (out["label"] == 1)
-    safe_mask = (out["is_outlier"] == 1) & (out["label"] == 0)
-    if mal_mask.sum() > 2 and safe_mask.sum() > 2:
-        outlier_details["malicious_outlier_terms"] = get_top_distinctive_terms(
-            X_tfidf, vocab, mal_mask.values, top_n=12
-        )
-        outlier_details["safe_outlier_terms"] = get_top_distinctive_terms(
-            X_tfidf, vocab, safe_mask.values, top_n=12
-        )
-
-    if save:
-        with open(PROCESSED_DIR / "outlier_details.json", "w") as f:
-            json.dump(outlier_details, f, indent=2)
-        out.to_csv(PROCESSED_DIR / "emails_with_outlier_flags.csv", index=False)
-    return {
-        "summary": summary,
-        "structural_comparison": structural,
-        "details": outlier_details,
-    }
 
 
 def top_discriminative_terms(df: pd.DataFrame, text_col: str = "body_clean",
@@ -429,7 +197,6 @@ def topic_model_subset(texts: pd.Series, n_topics: int = 8, n_top_words: int = 1
 def run_text_mining(df: pd.DataFrame, save: bool = True):
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-
 
     print("\nPHASE A — Descriptive statistics (safe vs malicious)")
     print("-" * 70)
